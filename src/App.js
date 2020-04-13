@@ -18,18 +18,26 @@ class App extends React.Component {
     }
   }
 
+  unsuscribeFromAuth = null
+
   componentDidMount(){
-    auth.onAuthStateChanged(user => {
+    //this is an open call with firebase server
+    this.unsuscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({ currentUser: user});
 
       console.log(user);
-    })
+    });
+  } 
+
+  componentWillUnmount(){
+    // close the call with firebase when the app is closed
+    this.unsuscribeFromAuth();
   }
 
   render() {
     return (
       <div>
-        <Header />
+        <Header currentUser={this.state.currentUser}/>
         <Switch>
           <Route exact path={'/'} component={HomePage} />
           <Route path={'/shop'} component={ShopPage} />

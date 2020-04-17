@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import './App.css';
 
@@ -22,10 +22,10 @@ class App extends React.Component {
 
   componentDidMount(){
     //this is an open call with firebase server
-    this.unsuscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user});
+    this.unsuscribeFromAuth = auth.onAuthStateChanged(async user => {
+      createUserProfileDocument(user)
 
-      console.log(user);
+    
     });
   } 
 

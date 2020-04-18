@@ -9,27 +9,39 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInOutPage from './pages/sign-in-out/sign-in-out.component';
 
-class App extends React.Component { 
-  constructor(){
+class App extends React.Component {
+  constructor() {
     super();
 
     this.state = {
-      currentUser : null
+      currentUser: null
     }
   }
 
   unsuscribeFromAuth = null
 
-  componentDidMount(){
+  componentDidMount() {
     //this is an open call with firebase server
-    this.unsuscribeFromAuth = auth.onAuthStateChanged(async user => {
-      createUserProfileDocument(user)
+    this.unsuscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-    
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      } else {
+        this.setState({ currentUser: userAuth })
+      }
+
     });
-  } 
+  }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     // close the call with firebase when the app is closed
     this.unsuscribeFromAuth();
   }
@@ -37,7 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser}/>
+        <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path={'/'} component={HomePage} />
           <Route path={'/shop'} component={ShopPage} />

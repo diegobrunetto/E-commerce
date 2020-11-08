@@ -14,7 +14,6 @@ class SignIn extends React.Component {
     }
   }
 
-
   handleSubmit = async event => {
     event.preventDefault();
 
@@ -45,7 +44,7 @@ class SignIn extends React.Component {
 
         <form onSubmit={this.handleSubmit}>
           <FormInput
-            name='email' 
+            name='email'
             type='email'
             value={this.state.email}
             handleChange={this.handleChange}

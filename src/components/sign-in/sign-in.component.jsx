@@ -12,7 +12,7 @@ class SignIn extends React.Component {
       email: '',
       password: ''
     }
-  }
+  } 
 
   handleSubmit = async event => {
     event.preventDefault();

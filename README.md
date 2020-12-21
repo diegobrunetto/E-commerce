@@ -4,7 +4,7 @@ This is a project from an [Udemy course](https://www.udemy.com/course/complete-r
 
 ## 🎨 Preview
 
-[DEMO](https://db-ecommerce-app.herokuapp.com/)
+You can watch a demo [here](https://db-ecommerce-app.herokuapp.com/)
 
 ## Technology
 

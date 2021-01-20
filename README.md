@@ -26,3 +26,5 @@ npm install
 - Animations
 - Product detail page
 - Admin panel
+- Mercadopago
+

@@ -56,6 +56,7 @@ export const CustomButtonContainer = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  margin: 5px 0;
 
-  ${getButtonStyles}
+  ${getButtonStyles};
 `;
